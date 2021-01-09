@@ -1,0 +1,19 @@
+R 1280 720
+SO ./texture/wood.xpm
+NO ./texture/wood.xpm
+WE ./texture/wood.xpm
+EA ./texture/wood.xpm
+S ./texture/wood.xpm
+F 255,100,0
+C 253,30,0
+
+1111111
+1000001
+100N001
+1000001
+1001001
+1001001
+1001001
+1001001
+1001001
+1111111
