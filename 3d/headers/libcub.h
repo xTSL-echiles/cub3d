@@ -28,27 +28,23 @@ typedef struct 			s_options
 	char		player;
 	char		*filename;
 }						t_options;
-/*
-typedef struct	s_tex
-{
-	void		*img;
-	char		*data;
-	int			bpp;
-	int			sizeline;
-	int			endian;
-}				t_tex;
-*/
+
+
 typedef	struct			s_text					
 {
 	void		*img_text;
-	char		*data_text;
-	int			bit_p_p_text;
-	int			line_lenght_text;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_lenght;
 	int			endian_text;
 	int			text_x;
 	int			text_y;
 	double		wallx;
+	void		*mlx_text;
+	int			img_width;
+    int			img_height;
 }						t_text;
+
 
 typedef struct			s_data 
 {
@@ -63,7 +59,6 @@ typedef struct			s_data
 	float 		player_a;
 	t_options	*qu;
 	//dda options
-	char 		**map;
 	double 		pos_plx;
 	double 		pos_ply;
 	double		cameraX;
@@ -90,32 +85,35 @@ typedef struct			s_data
 	int			drawend;
 	int			RGB;
 	// для текстур
-	t_text		text[1];
+	t_text		text[5];
 }						t_data;
 
 
 
-int		ft_atoi(const char *nptr);
-char	**ft_split(char const *s, char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_bzero(void *s, size_t n);
-char	*ft_strcpy(char *src);
-int		ft_isdigit(int c);
-int		ft_acces_checker(t_options *qu);
-void	ft_all_null_now(t_options *qu);
-void 	pars_check(t_options *qu, char *line);
-void	ft_cleaner_mass(char **ans);
-int		ft_parser_map(t_options *qu);
-int		ft_cptain_prise(t_options *qu);
-int		ft_check_digit_in_colors(char **ans);
-int 	ft_check_save(char *save);
-int		ft_check_file_name(t_options *qu);
-int 	ft_check_0_line_in_map(char *save, char *line);
-int		ft_map_printer(t_options *qu);
-int 	ft_check_argv(t_options *qu, char **argv, int argc);
-int 	ft_parser_start(t_data *img, int ar, char **arg);
-int		ft_key_press(int keycode, t_data * img);
-int		ft_pirnt_img_to_screen(t_data *img);
-void	texture_setup(t_data *img);
+int				ft_atoi(const char *nptr);
+char			**ft_split(char const *s, char c);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+void			*ft_calloc(size_t count, size_t size);
+void			*ft_bzero(void *s, size_t n);
+char			*ft_strcpy(char *src);
+int				ft_isdigit(int c);
+void			ft_putstr_fd(char *s);
+int				ft_acces_checker(t_options *qu);
+void			ft_all_null_now(t_options *qu);
+void 			pars_check(t_options *qu, char *line);
+void			ft_cleaner_mass(char **ans);
+int				ft_parser_map(t_options *qu);
+int				ft_cptain_prise(t_options *qu);
+int				ft_check_digit_in_colors(char **ans);
+int 			ft_check_save(char *save);
+int				ft_check_file_name(t_options *qu);
+int 			ft_check_0_line_in_map(char *save, char *line);
+int				ft_map_printer(t_options *qu);
+int 			ft_check_argv(t_options *qu, char **argv, int argc);
+int 			ft_parser_start(t_data *img, int ar, char **arg);
+int				ft_key_press(int keycode, t_data * img);
+int				ft_pirnt_img_to_screen(t_data *img);
+void			ft_texture_set(t_data *img);
+unsigned int	ft_get_background_color(t_data *img, char c);
+int				ft_error_msg(char *s);
 #endif

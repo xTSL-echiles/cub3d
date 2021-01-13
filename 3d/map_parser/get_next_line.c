@@ -69,10 +69,8 @@ int	get_next_line(int fd, char **line, int j)
 	static char	*save;
 	int			ret;
 
-	if (fd < 0 || !line || BUFFER_SIZE <= 0)
+	if (fd < 0 || !line || BUFFER_SIZE <= 0 || !(buf = malloc(sizeof(char) * BUFFER_SIZE + 1)))
 		return (-1);
-	if (!(buf = malloc(sizeof(char) * BUFFER_SIZE + 1)))
-		return (0);
 	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[ret] = '\0';

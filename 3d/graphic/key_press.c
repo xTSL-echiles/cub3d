@@ -7,14 +7,14 @@ void	ft_key_press_p2(int keycode, t_data *img)
 
 	oldPlaneX = img->plane_x;
 	oldDirX = img->dir_x;
-	rotSpeed = 0.15;
+	rotSpeed = 0.05;
 	if(keycode == 2)
     {
       img->dir_x = img->dir_x * cos(-rotSpeed) - img->dir_y * sin(-rotSpeed);
       img->dir_y = oldDirX * sin(-rotSpeed) + img->dir_y * cos(-rotSpeed);
       img->plane_x = img->plane_x * cos(-rotSpeed) - img->plane_y * sin(-rotSpeed);
       img->plane_y = oldPlaneX * sin(-rotSpeed) + img->plane_y * cos(-rotSpeed);
-	}
+    }
 	if(keycode == 0)
     {
       img->dir_x = img->dir_x * cos(rotSpeed) - img->dir_y * sin(rotSpeed);
@@ -28,21 +28,26 @@ int	ft_key_press(int keycode, t_data *img)
 {
 	float movespeed;
 
-	movespeed = 0.5;
+	movespeed = 0.15;
 	if (keycode == 53)
+	{
+		ft_cleaner_mass(img->qu->map);
+		free(img->qu);
+		free(img);
 		exit(1);
+	}
 	if(keycode == 13)
 	{	
-		if(img->map[(int)(img->pos_plx + img->dir_x * movespeed)][(int)img->pos_ply] != '1')
+		if(img->qu->map[(int)(img->pos_plx + img->dir_x * movespeed)][(int)img->pos_ply] != '1')
 			img->pos_plx += img->dir_x * movespeed;
-		if(img->map[(int)img->pos_plx][(int)(img->pos_ply + img->dir_y * movespeed)] != '1')
+		if(img->qu->map[(int)img->pos_plx][(int)(img->pos_ply + img->dir_y * movespeed)] != '1')
 			img->pos_ply += img->dir_y * movespeed;
 	}
 	else if(keycode == 1)
 	{	
-		if(img->map[(int)(img->pos_plx - img->dir_x * movespeed)][(int)img->pos_ply] != '1')
+		if(img->qu->map[(int)(img->pos_plx - img->dir_x * movespeed)][(int)img->pos_ply] != '1')
 			img->pos_plx -= img->dir_x * movespeed;
-		if(img->map[(int)img->pos_plx][(int)(img->pos_ply - img->dir_y * movespeed)] != '1')
+		if(img->qu->map[(int)img->pos_plx][(int)(img->pos_ply - img->dir_y * movespeed)] != '1')
 			img->pos_ply -= img->dir_y * movespeed;
 	}
 	else 

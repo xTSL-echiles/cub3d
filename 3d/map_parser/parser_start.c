@@ -46,7 +46,8 @@ int ft_read_and_rec(t_options *qu)
 
 int ft_parser_start(t_data *img, int ar, char **arg)
 {
-	img->qu = (t_options*)malloc(sizeof(t_options));
+	if(!(img->qu = (t_options*)malloc(sizeof(t_options))))
+		return(0);
 	ft_all_null_now(img->qu);
 	if(!(ft_check_argv(img->qu, arg, ar)))
 	{
@@ -59,10 +60,10 @@ int ft_parser_start(t_data *img, int ar, char **arg)
 		free(img->qu);
 		return(0);
 	}
-	if(ft_parser_map(img->qu))
+	if(!(ft_parser_map(img->qu)))
 	{
-		img->map = img->qu->map;
-		return(1);
+		free(img->qu);
+		return(0);
 	}
-	return(0);
+	return(1);
 }

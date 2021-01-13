@@ -18,7 +18,8 @@ SRC	= 		./map_parser/ft_acces.c\
 			./map_parser/utils_2.c\
 			./map_parser/utils.c\
 			./graphic/new_window.c\
-			./graphic/key_press.c
+			./graphic/key_press.c\
+			./graphic/texture.c
 
 LIB_MLX = ./minilibx_opengl_20191021/libmlx.a
 

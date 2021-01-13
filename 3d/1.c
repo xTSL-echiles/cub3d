@@ -1,7 +1,12 @@
 #include <math.h>
 #include <stdio.h>
 
-int main()
+int	main()
 {
-	printf("%f\n", 160/tan(3.14/6));
+	int i = -1;
+	char *s = "Hello";
+	while(s[++i])
+	{
+		printf("%c\n", s[i]);
+	}
 }
