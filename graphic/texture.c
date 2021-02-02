@@ -1,15 +1,4 @@
 #include "../headers/libcub.h"
-void	ft_cleaner(t_data *img)
-{
-	ft_cleaner_mass(img->qu->map);
-	free(img->qu);
-	free(img->sprite);
-	free(img->sprite_op);
-	if(img->qu->save_flag == 0)
-		mlx_destroy_window(img->mlx, img->mlx_win);
-	free(img->mlx);
-	exit(1);
-}
 
 void            ft_my_mlx_printer(t_data *data, int x, int y, int color)
 {
@@ -65,9 +54,9 @@ int	ft_text_init(t_data *img, int n)
 		img->text->wallx = img->pos_plx + img->walldist * img->raydir_x;
 	img->text->wallx -= floor(img->text->wallx);
 	img->text->text_x = (int)(img->text->wallx * (double)(img->text[n].img_height));
-	/*if(img->side == 0 && img->raydir_x > 0)
+	if(img->side == 0 && img->raydir_x > 0)
 		img->text->text_x = img->text[n].img_height - img->text->text_x - 1;
 	if(img->side == 1 && img->raydir_y < 0)
-		img->text->text_x = img->text[n].img_height - img->text->text_x - 1;*/
+		img->text->text_x = img->text[n].img_height - img->text->text_x - 1; // если текстуры симметричны - можно и убрать 
 	return(n);
 }

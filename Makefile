@@ -1,4 +1,4 @@
-NAME = 3d
+NAME = cub3D
 
 HEADER = ./headers/libcub.h
 
@@ -19,11 +19,12 @@ SRC	= 		./map_parser/ft_acces.c\
 			./graphic/texture.c\
 			./graphic/DDA_setup.c\
 			./graphic/sprites.c\
-			./graphic/screenshot_bmp.c
+			./graphic/screenshot_bmp.c\
+			./graphic/key_press_2.c\
 
-LIB_MLX = ./minilibx_opengl_20191021/libmlx.a
+LIB_MLX = libmlx.dylib
 
-MLX = ./minilibx_opengl_20191021
+MLX = ./minilibx_mms_20200219
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -35,7 +36,8 @@ all: $(NAME)
 
 $(NAME): $(SRC_O)
 		make -C $(MLX)
-		gcc $(MLX_FLAGS) $(SRC_O) $(LIB_MLX) -o $(NAME)
+		mv ./minilibx_mms_20200219/libmlx.dylib ./
+		gcc $(MLX_FLAGS) $(SRC_O)  $(LIB_MLX) -o $(NAME)
 
 %.o: %.c $(HEADER)
 	gcc $(FLAGS) -c $< -o $@
@@ -46,6 +48,7 @@ clean:
 
 fclean: clean
 		rm -rf $(NAME)
+		rm -rf $(LIB_MLX)
 
 re: fclean all
 

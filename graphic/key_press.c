@@ -14,8 +14,8 @@ int		ft_key_2(int keycode, t_data *img)
 		img->move_y_left = 1;
 	else if (keycode == 2)
 		img->move_y_right = 1;
-	else if (keycode == 53)
-		ft_cleaner(img);
+	else if(keycode == 53)
+		ft_key_close(img);
 	return (0);
 }
 
@@ -66,14 +66,14 @@ int		ft_key_press_p2(t_data *img)
 
 	oldPlaneX = img->plane_x;
 	oldDirX = img->dir_x;
-	rotSpeed = (img->move_cam_right == 1) ? 0.05 : -0.05;
+	rotSpeed = (img->move_cam_right == 1) ? -0.05 : 0.05;
 	if((img->move_cam_right == 1 && img->move_cam_left != 1) ||
 		(img->move_cam_left == 1 && img->move_cam_right != 1))
 	{
-      img->dir_x = img->dir_x * cos(-rotSpeed) - img->dir_y * sin(-rotSpeed);
-      img->dir_y = oldDirX * sin(-rotSpeed) + img->dir_y * cos(-rotSpeed);
-      img->plane_x = img->plane_x * cos(-rotSpeed) - img->plane_y * sin(-rotSpeed);
-      img->plane_y = oldPlaneX * sin(-rotSpeed) + img->plane_y * cos(-rotSpeed);
+      img->dir_x = img->dir_x * cos(rotSpeed) - img->dir_y * sin(rotSpeed);
+      img->dir_y = oldDirX * sin(rotSpeed) + img->dir_y * cos(rotSpeed);
+      img->plane_x = img->plane_x * cos(rotSpeed) - img->plane_y * sin(rotSpeed);
+      img->plane_y = oldPlaneX * sin(rotSpeed) + img->plane_y * cos(rotSpeed);
 	}
 	return (0);
 }
@@ -101,4 +101,3 @@ int	ft_key_press(t_data *img)
 	mlx_destroy_image(img->mlx, img->img);
 	return (0);
 }
-

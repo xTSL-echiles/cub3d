@@ -30,10 +30,7 @@ int		ft_acces_checker(t_options *qu)
 		}
 	}
 	if (qu->acces == 2)
-	{
-		write(1, "Error: texture error\n", 21);
 		return (2);
-	}
 	return ((qu->acces == 1) ? 1 : 0);
 }
 
@@ -53,11 +50,7 @@ void	check_r(t_options *qu, char *line)
 		if (i == 3)
 		{
 			qu->Rwid_x = ft_atoi(ans[1]);
-			if (qu->Rwid_x < 0 || qu->Rwid_x > 2560)
-				qu->Rwid_x = 2560;
 			qu->Rheig_y = ft_atoi(ans[2]);
-			if (qu->Rheig_y < 0 || qu->Rheig_y > 1440)
-				qu->Rheig_y = 1440;
 		}
 	}
 	ft_cleaner_mass(ans);
@@ -118,7 +111,7 @@ void	check_fc(t_options *qu, char *line, int i)
 	ft_cleaner_mass(ans);
 }
 
-void	pars_check(t_options *qu, char *line)
+int		pars_check(t_options *qu, char *line)
 {
 	int i;
 
@@ -141,4 +134,5 @@ void	pars_check(t_options *qu, char *line)
 			check_fc(qu, line, 0);
 		i++;
 	}
+	return (ft_garbage_check(line));
 }

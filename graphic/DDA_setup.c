@@ -33,9 +33,9 @@ int		ft_init_dda(t_data *img)
 	img->move_x_up = 0;
 	img->move_y_left = 0;
 	img->move_y_right = 0;
-	if (!(img->zBuffer = (double*)malloc(sizeof(double) * (img->qu->Rwid_x + 1))))
+	if (!(img->all_wall_dist = (double*)malloc(sizeof(double) * (img->qu->Rwid_x + 1))))
 		return (ft_error_msg("Malloc error"));
-	img->zBuffer[img->qu->Rwid_x] = '\0';
+	img->all_wall_dist[img->qu->Rwid_x] = '\0';
 	ft_texture_set(img);
 	return(1);
 }

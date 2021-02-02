@@ -27,9 +27,11 @@ int		ft_save_check(char **argv)
 	if (!(c = ft_strcpy("--save")))
 		return (ft_error_msg("Malloc error"));
 	i = 0;
-	while (argv[1][i] != '\0')
+	if (ft_strlen(argv[2], '\0') != ft_strlen(c, '\0'))
+		return (0);
+	while (argv[2][i] != '\0')
 	{
-		if (argv[1][i] != c[i])
+		if (argv[2][i] != c[i])
 			return (0);
 		i++;
 	}
@@ -42,9 +44,9 @@ int		ft_check_argv(t_options *qu, char **argv, int argc)
 	if (argc > 2 && (ft_save_check(argv) > 0))
 		qu->save_flag = 1;
 	else if (argc > 2)
-		return (ft_error_msg("Use 1 map or --save\n"));
+		return (ft_error_msg("Use 1 map and --save after map\n"));
 	if (argv[1])
-		qu->filename = ft_strcpy((qu->save_flag == 1) ? argv[2] : argv[1]);
+		qu->filename = ft_strcpy(argv[1]);
 	else
 		return (ft_error_msg("1st arg need map\n"));
 	if (ft_check_file_name(qu))

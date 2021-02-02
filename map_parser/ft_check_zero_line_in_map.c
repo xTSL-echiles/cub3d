@@ -38,10 +38,7 @@ int		ft_check_0_line_in_map(char *save, char *line)
 {
 	if (ft_check_save(save) && line[0] == '\n')
 	{
-		write(1, "Error: empty line in map\n", 25);
-		free(line);
 		free(save);
-		line = NULL;
 		save = NULL;
 		return (0);
 	}

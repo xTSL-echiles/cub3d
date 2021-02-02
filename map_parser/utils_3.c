@@ -84,3 +84,31 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	pst[i] = '\0';
 	return (pst);
 }
+
+int		ft_garbage_check(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == 'R')
+			return (1);
+		else if (line[i] == 'N' && line[i + 1] == 'O')
+			return (1);
+		else if (line[i] == 'S' && line[i + 1] == 'O')
+			return (1);
+		else if (line[i] == 'W' && line[i + 1] == 'E')
+			return (1);
+		else if (line[i] == 'E' && line[i + 1] == 'A')
+			return (1);
+		else if (line[i] == 'S')
+			return (1);
+		else if (line[i] == 'F' || line[i] == 'C')
+			return (1);
+		else if (line[i] != 32)
+			break ;
+		i++;
+	}
+	return ((!(line[i]) ? 1 : 0));
+}

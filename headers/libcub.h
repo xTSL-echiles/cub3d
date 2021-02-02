@@ -1,12 +1,15 @@
 #ifndef LIBCUB_H
 # define LIBCUB_H
 #include "get_next_line.h"
-#include "../minilibx_opengl_20191021/mlx.h"
+#include "../minilibx_mms_20200219/mlx.h"
 
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
 #include <math.h>
+
+#define	IGNORE_C_S	0x000000
+#define	S_O			img->sprite_op
 
 typedef struct 			s_options
 {
@@ -89,6 +92,8 @@ typedef struct			s_data
 	void    	*mlx;
     void   		*mlx_win;
 	//dda options
+	int			img_check_x;
+	int			img_check_y;
 	double 		pos_plx;
 	double 		pos_ply;
 	double		cameraX;
@@ -115,7 +120,7 @@ typedef struct			s_data
 	int			drawend;
 	int			RGB;
 	// для тестов
-	double		*zBuffer;
+	double		*all_wall_dist;
 	// для текстур
 	t_text		text[5];
 	t_options	*qu;
@@ -149,7 +154,9 @@ char			*ft_strcpy(char *src);
 int				ft_isdigit(int c);
 int				ft_acces_checker(t_options *qu);
 void			ft_all_null_now(t_options *qu);
-void 			pars_check(t_options *qu, char *line);
+int 			pars_check(t_options *qu, char *line);
+int				ft_svoboda_line(char **line, char *c);
+int				ft_garbage_check(char *line);
 void			ft_cleaner_mass(char **ans);
 int				ft_parser_map(t_options *qu);
 int				ft_cptain_prise(t_options *qu);
@@ -168,7 +175,7 @@ int				ft_text_init(t_data *img, int n);
 void            ft_my_mlx_printer(t_data *data, int x, int y, int color);
 int				ft_init_dda(t_data *img);
 void			ft_raycast_srart(t_data *img);
-int				ft_sprite_init(t_data *img, int d, int pos, unsigned int color_int);
+int				ft_sprite_init(t_data *img, int d, int pos, int color_int);
 //
 int				ft_key_2(int keycode, t_data *img);
 int				ft_key_3(int keycode, t_data *img);
@@ -177,5 +184,6 @@ int				ft_pirnt_img_to_screen(t_data *img);
 void			ft_cleaner(t_data *img);
 int				ft_screen_shot(t_data *img);
 int				ft_wiev_setup(t_options *qu);
+int				ft_key_close(t_data *img);
 
 #endif
