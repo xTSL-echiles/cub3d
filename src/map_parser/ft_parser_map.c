@@ -9,7 +9,7 @@
 /*   Updated: 2021/01/26 13:09:03 by echiles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+//не работает проверка на спавн игрока если выше пробел и нет закрытия
 #include "../../includes/libcub.h"
 
 int		ft_pars_str_utils(t_options *qu, int i, int j, int k)
@@ -19,8 +19,12 @@ int		ft_pars_str_utils(t_options *qu, int i, int j, int k)
 		if ((qu->map[i][j + 1] != '0' && qu->map[i][j + 1] != '1' &&
 		qu->map[i][j + 1] != '2' && qu->map[i][j + 1] != qu->player)
 		|| (qu->map[i + 1][j] != '1' && qu->map[i + 1][j] != '0'
-		&& qu->map[i + 1][j] != '2' && qu->map[i + 1][j] != qu->player))
-			return (0);
+		&& qu->map[i + 1][j] != '2' && qu->map[i + 1][j] != qu->player) ||
+		(qu->map[i - 1][j] != '1' && qu->map[i - 1][j] != '0'
+		&& qu->map[i - 1][j] != '2' && qu->map[i - 1][j] != qu->player) ||
+		(qu->map[i][j - 1] != '0' && qu->map[i][j - 1] != '1' &&
+		qu->map[i][j - 1] != '2' && qu->map[i][j - 1] != qu->player))
+			return(0);
 	}
 	if (k == 2)
 	{
@@ -65,14 +69,10 @@ int		ft_pars_str(t_options *qu, int i)
 int		ft_check_fst_and_lst(t_options *qu, int i)
 {
 	int	j;
-	int	str2;
 
 	j = 0;
-	str2 = ft_strlen(qu->map[i], '\0');
-	while (qu->map && qu->map[i][j] != '\0')
+	while (qu->map && qu->map[i] && qu->map[i][j] != '\0')
 	{
-		if (j > str2)
-			return (0);
 		if (qu->map[i][j] != '1' && qu->map[i][j] != ' ')
 			return (ft_error_msg("Error: invalid map\n"));
 		j++;
@@ -128,5 +128,7 @@ int		ft_parser_map(t_options *qu)
 	}
 	if (!(ft_check_fst_and_lst(qu, i)))
 		return (0);
+	if(!(ft_pos_and_dist_sprites(qu)))
+		return(0);
 	return (ft_wiev_setup(qu));
 }

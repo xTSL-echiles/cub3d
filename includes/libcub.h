@@ -24,6 +24,12 @@
 # define IGNORE_C_S	0x000000
 # define S_O		img->sprite_op
 
+typedef	struct			s_sprites
+{
+	double				sp_x;
+	double				sp_y;
+}						t_sprite;
+
 typedef struct			s_options
 {
 	int					rwid_x;
@@ -49,6 +55,8 @@ typedef struct			s_options
 	double				fov_y;
 	int					numsprites;
 	int					save_flag;
+	t_sprite			*sprite;
+
 }						t_options;
 
 typedef	struct			s_text
@@ -82,13 +90,6 @@ typedef	struct			s_sprites_ut
 	int					texx;
 	int					texy;
 }						t_sprite_ut;
-
-typedef	struct			s_sprites
-{
-	double				sp_x;
-	double				sp_y;
-	double				sp_dist;
-}						t_sprite;
 
 typedef struct			s_data
 {
@@ -128,7 +129,6 @@ typedef struct			s_data
 	double				*all_wall_dist;
 	t_text				text[5];
 	t_options			*qu;
-	t_sprite			*sprite;
 	t_sprite_ut			*sprite_op;
 	int					move_x_up;
 	int					move_x_down;
@@ -163,7 +163,7 @@ int						ft_parser_map(t_options *qu);
 int						ft_cptain_prise(t_options *qu);
 int						ft_check_res(char **ans, int start, int check);
 int						ft_check_save(char *save);
-int						ft_check_file_name(t_options *qu);
+int						ft_check_file_name(char *name, char *s);
 int						ft_check_0_line_in_map(char *save, char *line);
 int						ft_check_argv(t_options *qu, char **argv, int argc);
 int						ft_parser_start(t_data *img, int ar, char **arg);
@@ -184,9 +184,10 @@ void					ft_cleaner(t_data *img);
 int						ft_screen_shot(t_data *img);
 int						ft_wiev_setup(t_options *qu);
 int						ft_key_close(t_data *img);
-int						ft_color_control(char **ans, char c);
+int						ft_color_control(char **ans, char c, int i, int j);
 int						ft_check_color_p2(t_options *qu, int i, char **ans,
 char c);
 int						ft_check_line_for_split(char *line);
 int						ft_check_nubmers(char *s);
+int						ft_pos_and_dist_sprites(t_options *qu);
 #endif

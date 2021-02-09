@@ -86,24 +86,31 @@ char	**ft_split(char const *s, char c)
 	return (ans);
 }
 
-int		ft_color_control(char **ans, char c)
+int		ft_color_control(char **ans, char c, int i, int j)
 {
-	int i;
-	int j;
+	int k;
 
-	j = 0;
-	while (j < 3)
+	k = 0;
+	while (++j < 3)
 	{
 		i = 0;
 		while (ans[j][i] != '\0')
 		{
-			if (ans[j][i] == ' ' || ans[j][i] == c || (ans[j][i] <= '9'
-			&& ans[j][i] >= '0'))
+			if ((ans[j][i] <= '9' && ans[j][i] >= '0')
+			|| ans[j][i] == c || ans[j][i] == ' ')
+			{
+				if ((ans[j][i] <= '9' && ans[j][i] >= '0') || ans[j][i] == c)
+				{
+					k++;
+					while (ans[j][i + 1] && (ans[j][i + 1] <= '9'
+					&& ans[j][i + 1] >= '0'))
+						i++;
+				}
 				i++;
+			}
 			else
 				return (0);
 		}
-		j++;
 	}
-	return (1);
+	return ((k == 4) ? 1 : 0);
 }

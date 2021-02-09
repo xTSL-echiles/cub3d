@@ -88,14 +88,13 @@ int		ft_pirnt_img_to_screen(t_data *img)
 		ft_cleaner(img);
 	}
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
-	mlx_do_sync(img->mlx);
+	//mlx_do_sync(img->mlx);
 	return (1);
 }
 
 int		main(int argc, char **argv)
 {
 	t_data	*img;
-
 	if (!(img = (t_data*)malloc(sizeof(t_data))))
 		return (ft_error_msg("Malloc error"));
 	if (!(ft_parser_start(img, argc, argv)))
@@ -104,7 +103,10 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (!(ft_init_dda(img)))
+	{
+		ft_cleaner(img);
 		return (0);
+	}
 	if (img->qu->save_flag == 1)
 		ft_key_press(img);
 	mlx_hook(img->mlx_win, 2, 0, ft_key_2, img);

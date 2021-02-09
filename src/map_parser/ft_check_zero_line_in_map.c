@@ -84,15 +84,14 @@ int		ft_check_line_for_split(char *line)
 int		ft_check_nubmers(char *s)
 {
 	int k;
-	int j;
+	int l;
 
+	l = 0;
 	k = 0;
-	j = 0;
+	while(s && s[l] == '0')
+		l++;
 	while (s && s[k])
-	{
-		if (s[k] == 0)
-			j++;
 		k++;
-	}
-	return ((k > 10) ? 2147483647 : 0);
+	k = k - l;
+	return ((k >= 9) ? 20 : 0);
 }

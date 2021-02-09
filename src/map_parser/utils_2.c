@@ -49,7 +49,7 @@ int		ft_check_argv(t_options *qu, char **argv, int argc)
 		qu->filename = ft_strcpy(argv[1]);
 	else
 		return (ft_error_msg("1st arg need map\n"));
-	if (ft_check_file_name(qu))
+	if (ft_check_file_name(qu->filename, ".cub"))
 		return (ft_error_msg("Error: wrong file name or invalid file\n"));
 	return (1);
 }

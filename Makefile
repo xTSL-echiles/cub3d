@@ -21,12 +21,13 @@ SRC	= 		./src/map_parser/ft_acces.c\
 			./src/graphic/sprites.c\
 			./src/graphic/screenshot_bmp.c\
 			./src/graphic/utils_graphic.c\
+			./src/map_parser/ft_map_parser_p2.c\
 
 LIB_MLX = libmlx.dylib
 
 MLX = ./minilibx_mms_20200219
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -O2
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
@@ -37,7 +38,7 @@ all: $(NAME)
 $(NAME): $(SRC_O)
 		make -C $(MLX)
 		mv ./minilibx_mms_20200219/libmlx.dylib ./
-		gcc $(MLX_FLAGS) $(SRC_O) $(LIB_MLX) -o $(NAME)
+		gcc  $(MLX_FLAGS) $(SRC_O) $(LIB_MLX) -o $(NAME)
 
 %.o: %.c $(HEADER)
 	gcc $(FLAGS) -c $< -o $@

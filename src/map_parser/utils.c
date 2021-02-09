@@ -34,6 +34,29 @@ void	ft_all_null_now(t_options *qu)
 	qu->save_flag = 0;
 }
 
+int		ft_check_file_name(char *name, char *s)
+{
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (name && name[i] != '\0')
+		i++;
+	if (i > 5)
+	{
+		if (name[i - 1] == s[3])
+			j++;
+		if (name[i - 2] == s[2])
+			j++;
+		if (name[i - 3] == s[1])
+			j++;
+		if (name[i - 4] == s[0])
+			j++;
+	}
+	return (((j == 4) ? 0 : 1));
+}
+
 void	ft_cleaner_mass(char **ans)
 {
 	int	i;
@@ -64,6 +87,14 @@ int		ft_cptain_prise(t_options *qu)
 	if ((fd = open(qu->s, O_RDONLY)) < 0)
 		i++;
 	close(fd);
+	if (i == 0)
+	{
+		i = ft_check_file_name(qu->no, ".xpm");
+		i = ft_check_file_name(qu->so, ".xpm");
+		i = ft_check_file_name(qu->we, ".xpm");
+		i = ft_check_file_name(qu->ea, ".xpm");
+		i = ft_check_file_name(qu->s, ".xpm");
+	}
 	return ((i > 0) ? 2 : 0);
 }
 
@@ -85,27 +116,4 @@ int		ft_check_res(char **ans, int start, int check)
 		j++;
 	}
 	return (1);
-}
-
-int		ft_check_file_name(t_options *qu)
-{
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	while (qu->filename[i] != '\0')
-		i++;
-	if (i > 5)
-	{
-		if (qu->filename[i - 1] == 'b')
-			j++;
-		if (qu->filename[i - 2] == 'u')
-			j++;
-		if (qu->filename[i - 3] == 'c')
-			j++;
-		if (qu->filename[i - 4] == '.')
-			j++;
-	}
-	return (((j == 4) ? 0 : 1));
 }

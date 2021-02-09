@@ -43,7 +43,7 @@ int		check_r(t_options *qu, char *line)
 	i = 0;
 	j = 0;
 	ans = ft_split(line, ' ');
-	if (ans[0][0] == 'R')
+	if (ans[0][0] == 'R' && ans[0][1] == '\0')
 	{
 		while (ans[i] != '\0')
 			i++;
@@ -71,20 +71,20 @@ int		check_texture(t_options *qu, char *line, int i, int j)
 		i++;
 	if (i == 2)
 	{
-		if ((ft_strrchr(ans[0], 'E') != NULL) &&
-			(ft_strrchr(ans[0], 'A') != NULL) && qu->ea == NULL)
+		if (ans[0][0] == 'E' && ans[0][1] == 'A' && ans[0][2] == '\0'
+			&& qu->ea == NULL)
 			qu->ea = ft_strcpy(ans[++j]);
-		else if ((ft_strrchr(ans[0], 'W') != NULL) &&
-			(ft_strrchr(ans[0], 'E') != NULL) && qu->we == NULL)
+		else if (ans[0][0] == 'W' && ans[0][1] == 'E' && ans[0][2] == '\0'
+			&& qu->we == NULL)
 			qu->we = ft_strcpy(ans[++j]);
-		else if ((ft_strrchr(ans[0], 'N') != NULL) &&
-			(ft_strrchr(ans[0], 'O') != NULL) && qu->no == NULL)
+		else if (ans[0][0] == 'N' && ans[0][1] == 'O' && ans[0][2] == '\0'
+			&& qu->no == NULL)
 			qu->no = ft_strcpy(ans[++j]);
-		else if ((ft_strrchr(ans[0], 'S') != NULL) &&
-			(ft_strrchr(ans[0], 'O') != NULL) && qu->so == NULL)
+		else if (ans[0][0] == 'S' && ans[0][1] == 'O' && ans[0][2] == '\0'
+			&& qu->so == NULL)
 			qu->so = ft_strcpy(ans[++j]);
-		else if ((ft_strrchr(ans[0], 'S') != NULL) &&
-			(ft_strrchr(ans[0], 'O') == NULL) && qu->s == NULL)
+		else if (ans[0][0] == 'S' && ans[0][1] == '\0'
+			&& qu->s == NULL)
 			qu->s = ft_strcpy(ans[++j]);
 	}
 	ft_cleaner_mass(ans);
@@ -104,7 +104,7 @@ int		check_fc(t_options *qu, char *line, int i, char c)
 	i = 0;
 	while (ans && ans[i] != '\0')
 		i++;
-	if (i == 3 && ft_color_control(ans, c))
+	if (i == 3 && ft_color_control(ans, c, 0, -1))
 	{
 		i = 0;
 		while ((!ft_isdigit(ans[0][i])))

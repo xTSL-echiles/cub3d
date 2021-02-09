@@ -80,7 +80,7 @@ int		ft_key_press_p2(t_data *img)
 
 	old_vex_plane = img->plane_x;
 	old_vec = img->dir_x;
-	angle = (img->move_cam_right == 1) ? -0.05 : 0.05;
+	angle = (img->move_cam_right == 1) ? -0.1 : 0.1;
 	if ((img->move_cam_right == 1 && img->move_cam_left != 1) ||
 		(img->move_cam_left == 1 && img->move_cam_right != 1))
 	{
