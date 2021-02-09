@@ -6,7 +6,7 @@ WE ./texture/mossy.xpm
 EA ./texture/wood.xpm
 S  ./texture/barrel.xpm
 F 0,  0,   0             
-C 255,255,255
+C 0255,244,233
 111111111
 12200001
 122000111

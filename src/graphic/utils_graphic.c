@@ -17,7 +17,10 @@ void	ft_cleaner(t_data *img)
 	if (img->qu->map)
 		ft_cleaner_mass(img->qu->map);
 	if (img->qu)
+	{
+		free(img->qu->sprite);
 		free(img->qu);
+	}
 	if (img->qu->save_flag == 0)
 		mlx_destroy_window(img->mlx, img->mlx_win);
 	free(img->mlx);

@@ -136,6 +136,7 @@ typedef struct			s_data
 	int					move_y_left;
 	int					move_cam_right;
 	int					move_cam_left;
+	int					i;
 }						t_data;
 
 typedef	struct			s_bmp

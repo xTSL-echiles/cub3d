@@ -45,8 +45,25 @@ int		ft_check_0_line_in_map(char *save, char *line)
 	return (1);
 }
 
+int		ft_check_nubmers(char *s)
+{
+	int k;
+	int l;
+
+	l = 0;
+	k = 0;
+	while(s && s[l] == '0')
+		l++;
+	while (s && s[k])
+		k++;
+	k = k - l;
+	return ((k >= 9) ? 20 : 0);
+}
+
 int		ft_check_color_p2(t_options *qu, int i, char **ans, char c)
 {
+	if(!(ft_check_nubmers(&ans[0][i]) || (!(ft_check_nubmers(ans[1])) || (!(ft_check_nubmers(ans[2]))))))
+		return(0);
 	if ((ft_strrchr(ans[0], c) != NULL) &&
 	(qu->fr == -1 && qu->fg == -1 && qu->fb == -1))
 	{
@@ -79,19 +96,4 @@ int		ft_check_line_for_split(char *line)
 			j++;
 	}
 	return (j);
-}
-
-int		ft_check_nubmers(char *s)
-{
-	int k;
-	int l;
-
-	l = 0;
-	k = 0;
-	while(s && s[l] == '0')
-		l++;
-	while (s && s[k])
-		k++;
-	k = k - l;
-	return ((k >= 9) ? 20 : 0);
 }

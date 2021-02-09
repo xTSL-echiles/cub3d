@@ -107,10 +107,9 @@ int		ft_pos_and_dist_sprites(t_data *img)
 	//return ((ft_sprite_dist_sort(img, -1, -1)));
 }
 */
-int		ft_sprite_dist(t_data *img)
+double*		ft_sprite_dist(t_data *img, double *sprite_dist)
 {
 	int i;
-	double *sprite_dist;
 
 	i = 0;
 	if(!(sprite_dist = (double*)malloc(sizeof(double) * (img->qu->numsprites + 1))))
@@ -123,7 +122,8 @@ int		ft_sprite_dist(t_data *img)
 		i++;
 	}
 	qs(img, sprite_dist, 0, img->qu->numsprites - 1);
-	return(1);
+	//free(sprite_dist);
+	return(sprite_dist);
 }
 
 void	ft_sprite_draw_options(t_data *img, int i)
@@ -180,20 +180,24 @@ void	ft_sprite_printer(t_data *img, int x, int y_cor, int pos)
 		}
 	}
 }
+/*void			ft_my_mlx_printer(t_data *data, int x, int y, int color)
+{
+	char	*dst;
 
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}*/
 int		ft_sprite_init(t_data *img, int y_cor, int pos)
 {
 	int i;
 	int x;
-
+	double *sprite_dist = NULL;
 	i = img->qu->numsprites;
 	if (!(img->sprite_op = (t_sprite_ut*)malloc(sizeof(t_sprite_ut))))
 		return (0);
 	double *buf;
 	buf = (double*)malloc(sizeof(double) * (img->qu->numsprites + 1));
-	//ft_sprite_dist_sort(img, -1, -1);
-//	if (!(ft_pos_and_dist_sprites(img)))
-	if(!(ft_sprite_dist(img)))
+	if(!(sprite_dist = ft_sprite_dist(img, sprite_dist)))
 		return (0);
 	while (--i >= 0)
 	{
@@ -203,10 +207,12 @@ int		ft_sprite_init(t_data *img, int y_cor, int pos)
 		{
 			S_O->texx = (int)(256 * (x - (S_O->spritewidx - S_O->spritewidht / 2))
 			* img->text[4].img_width / S_O->spritewidht) / 256;
+			/*S_O->texx = (int)((x - (S_O->spritewidx - S_O->spritewidht / 2))
+			* img->text[4].img_width / S_O->spritewidht);*/
 			ft_sprite_printer(img, x, y_cor, pos);
 		}
 	}
-	//free(img->qu->sprite);
+	free(sprite_dist);
 	free(img->sprite_op);
 	return (1);
 }

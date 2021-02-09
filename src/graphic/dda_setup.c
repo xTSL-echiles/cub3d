@@ -129,8 +129,8 @@ void	ft_hit(t_data *img)
 
 void	ft_raycast_srart(t_data *img)
 {
-//	img->i = 0;
-	/*img->qu->sprite[0].sp_x = 0;
+	img->i = 0;
+	img->qu->sprite[0].sp_x = 0;
 	img->qu->sprite[0].sp_y = 0;
 	img->qu->sprite[0].sp_dist = 0;*/
 	img->fov_helper = 2 * img->x / (double)img->qu->rwid_x - 1;

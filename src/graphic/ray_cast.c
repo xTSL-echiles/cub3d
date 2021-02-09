@@ -88,7 +88,7 @@ int		ft_pirnt_img_to_screen(t_data *img)
 		ft_cleaner(img);
 	}
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
-	//mlx_do_sync(img->mlx);
+	mlx_do_sync(img->mlx);
 	return (1);
 }
 

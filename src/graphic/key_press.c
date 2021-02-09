@@ -52,19 +52,19 @@ int		ft_key_press_p3(t_data *img)
 {
 	float movespeed;
 
-	movespeed = (img->move_y_left == 1) ? 0.1 : -0.1;
+	movespeed = (img->move_y_left == 1) ? 0.12 : -0.12;
 	if ((img->move_y_left == 1 && img->move_y_right != 1) ||
 		(img->move_y_right == 1 && img->move_y_left != 1))
 	{
 		if (img->qu->map[(int)(img->pos_plx - movespeed * img->dir_y)]
-		[(int)(img->pos_ply)] != '1' && img->qu->map[(int)(img->pos_plx)]
-		[(int)(img->pos_ply + movespeed * img->dir_x)] != '1')
+		[(int)(img->pos_ply)] != '1' /*&& img->qu->map[(int)(img->pos_plx)]
+		[(int)(img->pos_ply + movespeed * img->dir_x)] != '1'*/)
 			img->pos_plx -= movespeed * img->dir_y;
 		else
 			return (0);
 		if (img->qu->map[(int)(img->pos_plx)][(int)(img->pos_ply
-		+ movespeed * img->dir_x)] != '1' && img->qu->map[(int)(img->pos_plx
-		- movespeed * img->dir_y)][(int)(img->pos_ply)] != '1')
+		+ movespeed * img->dir_x)] != '1' /*&& img->qu->map[(int)(img->pos_plx
+		- movespeed * img->dir_y)][(int)(img->pos_ply)] != '1'*/)
 			img->pos_ply += movespeed * img->dir_x;
 		else
 			return (0);

@@ -24,5 +24,4 @@ int		ft_pos_and_dist_sprites(t_options *qu)
 		}
 	}
 	return(1);
-	//return ((ft_sprite_dist_sort(img, -1, -1)));
 }
