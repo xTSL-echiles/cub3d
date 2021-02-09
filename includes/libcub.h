@@ -89,6 +89,9 @@ typedef	struct			s_sprites_ut
 	int					drawendx;
 	int					texx;
 	int					texy;
+	double				sp_xtemp;
+	double				sp_ytemp;
+	double				tmp;
 }						t_sprite_ut;
 
 typedef struct			s_data
@@ -136,7 +139,6 @@ typedef struct			s_data
 	int					move_y_left;
 	int					move_cam_right;
 	int					move_cam_left;
-	int					i;
 }						t_data;
 
 typedef	struct			s_bmp
@@ -191,4 +193,6 @@ char c);
 int						ft_check_line_for_split(char *line);
 int						ft_check_nubmers(char *s);
 int						ft_pos_and_dist_sprites(t_options *qu);
+void					quick_sort_2(t_data *img, double*s_arr, int left,
+int right);
 #endif

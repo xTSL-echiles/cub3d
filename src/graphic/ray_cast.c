@@ -95,6 +95,7 @@ int		ft_pirnt_img_to_screen(t_data *img)
 int		main(int argc, char **argv)
 {
 	t_data	*img;
+
 	if (!(img = (t_data*)malloc(sizeof(t_data))))
 		return (ft_error_msg("Malloc error"));
 	if (!(ft_parser_start(img, argc, argv)))

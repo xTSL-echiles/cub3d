@@ -54,8 +54,6 @@ int		ft_init_dda(t_data *img)
 	img->move_x_up = 0;
 	img->move_y_left = 0;
 	img->move_y_right = 0;
-	//
-	//img->i = 0;
 	if (!(img->all_wall_dist = (double*)malloc(sizeof(double)
 		* (img->qu->rwid_x + 1))))
 		return (ft_error_msg("Malloc error"));
@@ -105,23 +103,6 @@ void	ft_hit(t_data *img)
 			img->mapy += img->stepy;
 			img->side = 1;
 		}
-		
-		///////////////////////////////////////////////
-	/*	if(img->qu->map[img->mapx][img->mapy] == '2')
-			{
-				
-					img->i = img->mapx + img->mapy;
-					if(!(img->qu->sprite[img->i].sp_x && img->qu->sprite[img->i].sp_dist))
-					{
-						img->qu->sprite[img->i].sp_x = img->mapx + 0.5;
-						img->qu->sprite[img->i].sp_y = img->mapy + 0.5;
-						img->qu->sprite[img->i].sp_dist = (img->pos_plx - img->qu->sprite[img->i].sp_x)
-						* (img->pos_plx - img->qu->sprite[img->i].sp_x) + (img->pos_ply -
-						img->qu->sprite[img->i].sp_y) * (img->pos_ply - img->qu->sprite[img->i].sp_y);
-						//printf("X%f Y%f %d\n",img->qu->sprite[img->i].sp_x,  img->qu->sprite[img->i].sp_y, img->i);
-					}
-			}
-			*/
 		if (img->qu->map[img->mapx][img->mapy] == '1')
 			img->hit = 1;
 	}
@@ -129,10 +110,6 @@ void	ft_hit(t_data *img)
 
 void	ft_raycast_srart(t_data *img)
 {
-	img->i = 0;
-	img->qu->sprite[0].sp_x = 0;
-	img->qu->sprite[0].sp_y = 0;
-	img->qu->sprite[0].sp_dist = 0;*/
 	img->fov_helper = 2 * img->x / (double)img->qu->rwid_x - 1;
 	img->raydir_x = img->dir_x + img->plane_x * img->fov_helper;
 	img->raydir_y = img->dir_y + img->plane_y * img->fov_helper;
@@ -142,12 +119,10 @@ void	ft_raycast_srart(t_data *img)
 	img->mapy = (int)img->pos_ply;
 	ft_dist_for(img);
 	ft_hit(img);
-	//printf("%f\n", img->raydir_x);
 	if (img->side == 0)
 		img->walldist = (img->mapx - img->pos_plx + (1 - img->stepx) / 2)
 			/ img->raydir_x;
 	else
 		img->walldist = (img->mapy - img->pos_ply + (1 - img->stepy) / 2)
 			/ img->raydir_y;
-	//printf("Wall dist %f\n", img->walldist);
 }

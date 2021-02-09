@@ -12,6 +12,19 @@
 
 #include "../../includes/libcub.h"
 
+void	quick_sort_2(t_data *img, double *s_arr, int left, int right)
+{
+	img->sprite_op->tmp = s_arr[left];
+	s_arr[left] = s_arr[right];
+	s_arr[right] = img->sprite_op->tmp;
+	img->sprite_op->sp_xtemp = img->qu->sprite[left].sp_x;
+	img->sprite_op->sp_ytemp = img->qu->sprite[left].sp_y;
+	img->qu->sprite[left].sp_x = img->qu->sprite[right].sp_x;
+	img->qu->sprite[left].sp_y = img->qu->sprite[right].sp_y;
+	img->qu->sprite[right].sp_x = img->sprite_op->sp_xtemp;
+	img->qu->sprite[right].sp_y = img->sprite_op->sp_ytemp;
+}
+
 void	ft_cleaner(t_data *img)
 {
 	if (img->qu->map)
