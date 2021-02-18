@@ -56,7 +56,7 @@ int		ft_init_dda(t_data *img)
 	img->move_y_right = 0;
 	if (!(img->all_wall_dist = (double*)malloc(sizeof(double)
 		* (img->qu->rwid_x + 1))))
-		return (ft_error_msg("Malloc error"));
+		return (ft_error_msg("Error\nMalloc error"));
 	img->all_wall_dist[img->qu->rwid_x] = '\0';
 	ft_texture_set(img);
 	return (1);

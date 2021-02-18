@@ -65,13 +65,13 @@ int		ft_screen_shot(t_data *img)
 	int		fd;
 
 	if (!(bmp = (t_bmp*)malloc(sizeof(t_bmp))))
-		return (ft_error_msg("Malloc error"));
+		return (ft_error_msg("Error\nMalloc error"));
 	if ((fd = open("screenshot.bmp", O_CREAT | O_WRONLY, S_IREAD
 	| S_IWRITE)) == -1)
-		return (ft_error_msg("Cant open"));
+		return (ft_error_msg("Error\nCant create|open screenshot"));
 	bmp->size_of_file = img->qu->rheig_y * img->qu->rwid_x * 4 + 54;
 	if (!(bmp->screenshot = (char*)malloc(sizeof(char) * bmp->size_of_file)))
-		return (ft_error_msg("Malloc error"));
+		return (ft_error_msg("Error\nMalloc error"));
 	ft_bzero(bmp->screenshot, bmp->size_of_file);
 	ft_set_header(bmp, img);
 	ft_color(img, bmp);

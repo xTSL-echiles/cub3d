@@ -23,6 +23,7 @@
 
 # define IGNORE_C_S	0x000000
 # define S_O		img->sprite_op
+# define ERROR		"Error\nuse map 1st and --save after for screenshot\n"
 
 typedef	struct			s_sprites
 {

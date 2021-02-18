@@ -81,7 +81,7 @@ int		ft_pirnt_img_to_screen(t_data *img)
 		img->x++;
 	}
 	if (!(ft_sprite_init(img, 0, 0)))
-		return (ft_error_msg("Malloc error"));
+		return (ft_error_msg("Error\nMalloc error"));
 	if (img->qu->save_flag == 1)
 	{
 		ft_screen_shot(img);
@@ -97,7 +97,7 @@ int		main(int argc, char **argv)
 	t_data	*img;
 
 	if (!(img = (t_data*)malloc(sizeof(t_data))))
-		return (ft_error_msg("Malloc error"));
+		return (ft_error_msg("Error\nMalloc error"));
 	if (!(ft_parser_start(img, argc, argv)))
 	{
 		free(img);

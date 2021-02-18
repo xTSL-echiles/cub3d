@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "../../includes/libcub.h"
 
 int		ft_map_rec(t_options *qu, char *save, char *line)
@@ -19,7 +18,7 @@ int		ft_map_rec(t_options *qu, char *save, char *line)
 	{
 		free(line);
 		free(save);
-		return (ft_error_msg("Error: empty map\n"));
+		return (ft_error_msg("Error\n empty map\n"));
 	}
 	if (save != NULL)
 	{
@@ -40,7 +39,7 @@ int		ft_read_and_rec(t_options *qu)
 
 	save = NULL;
 	if ((fd = open(qu->filename, O_RDONLY)) == -1)
-		return (ft_error_msg("Cant read map-file\n"));
+		return (ft_error_msg("Error\ncant read map-file\n"));
 	while (get_next_line(fd, &line, ((ft_acces_checker(qu)) > 0) ? 1 : 0) > 0)
 	{
 		j = ((qu->acces == 2) ? 1 : 0);
@@ -54,7 +53,7 @@ int		ft_read_and_rec(t_options *qu)
 			j = ((pars_check(qu, line) > 0) ? 0 : 1);
 		free(line);
 		if (j == 1)
-			return (ft_error_msg("Error: invalid options/empty line in map\n"));
+			return (ft_error_msg("Error\ninvalid options/empty line in map\n"));
 	}
 	return ((ft_map_rec(qu, save, line)));
 }

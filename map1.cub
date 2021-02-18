@@ -1,12 +1,12 @@
-R 1400 1000
+R 1000 600
 
-NO ./texture/wood.xpm
+NO ./texture/stone.xpm
 
-SO ./texture/wood.xpm
+SO ./texture/redbrick.xpm
 
 WE ./texture/wood.xpm
 
-EA ./texture/wood.xpm
+EA ./texture/mossy.xpm
 
 S ./texture/barrel.xpm
 

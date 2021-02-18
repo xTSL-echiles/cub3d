@@ -31,7 +31,7 @@ int		ft_pars_str_utils(t_options *qu, int i, int j, int k)
 		if (qu->map[i][j] != '0' && qu->map[i][j] != '1' &&
 		qu->map[i][j] != '2' && qu->map[i][j] != qu->player &&
 		qu->map[i][j] != ' ' && qu->map[i][j] != '\n')
-			return (ft_error_msg("Error: invalid map\n"));
+			return (ft_error_msg("Error\ninvalid map\n"));
 		if (qu->map[i][j] == '2')
 			qu->numsprites++;
 	}
@@ -74,7 +74,7 @@ int		ft_check_fst_and_lst(t_options *qu, int i)
 	while (qu->map && qu->map[i] && qu->map[i][j] != '\0')
 	{
 		if (qu->map[i][j] != '1' && qu->map[i][j] != ' ')
-			return (ft_error_msg("Error: invalid map\n"));
+			return (ft_error_msg("Error\ninvalid map\n"));
 		j++;
 	}
 	return (1);
@@ -99,12 +99,12 @@ int		ft_player_pos(t_options *qu)
 					qu->player = qu->map[i][j];
 					break ;
 				}
-				return (ft_error_msg("Error: many players position\n"));
+				return (ft_error_msg("Error\nmany players position\n"));
 			}
 		}
 	}
 	if (!(qu->player))
-		return (ft_error_msg("Error: no player position\n"));
+		return (ft_error_msg("Error\nno player position\n"));
 	return (1);
 }
 
@@ -123,7 +123,7 @@ int		ft_parser_map(t_options *qu)
 		else
 		{
 			if (!(ft_pars_str(qu, i)))
-				return (ft_error_msg("Error: invalid map\n"));
+				return (ft_error_msg("Error\ninvalid map\n"));
 		}
 	}
 	if (!(ft_check_fst_and_lst(qu, i)))

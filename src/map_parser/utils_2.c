@@ -25,7 +25,7 @@ int		ft_save_check(char **argv)
 	char	*c;
 
 	if (!(c = ft_strcpy("--save")))
-		return (ft_error_msg("Malloc error"));
+		return (ft_error_msg("Error\nmalloc"));
 	i = 0;
 	if (ft_strlen(argv[2], '\0') != ft_strlen(c, '\0'))
 		return (0);
@@ -44,13 +44,13 @@ int		ft_check_argv(t_options *qu, char **argv, int argc)
 	if ((argc > 2 && argc < 4) && (ft_save_check(argv) > 0))
 		qu->save_flag = 1;
 	else if (argc > 2)
-		return (ft_error_msg("Use map 1st and --save after for screenshot\n"));
+		return (ft_error_msg(ERROR));
 	if (argv[1])
 		qu->filename = ft_strcpy(argv[1]);
 	else
-		return (ft_error_msg("1st arg need map\n"));
+		return (ft_error_msg("Error\n1st arg need map\n"));
 	if (ft_check_file_name(qu->filename, ".cub"))
-		return (ft_error_msg("Error: wrong file name or invalid file\n"));
+		return (ft_error_msg("Error\nwrong file name or invalid file\n"));
 	return (1);
 }
 

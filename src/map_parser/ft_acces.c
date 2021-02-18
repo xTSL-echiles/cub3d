@@ -59,7 +59,7 @@ int		check_r(t_options *qu, char *line)
 		}
 	}
 	ft_cleaner_mass(ans);
-	return (1);
+	return ((i == 3) ? 1 : 0);
 }
 
 int		check_texture(t_options *qu, char *line, int i, int j)

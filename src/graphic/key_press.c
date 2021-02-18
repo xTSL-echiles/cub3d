@@ -113,7 +113,7 @@ int		ft_key_press(t_data *img)
 	ft_key_press_p2(img);
 	ft_key_press_p3(img);
 	if (!(ft_pirnt_img_to_screen(img)))
-		return (ft_error_msg("Malloc error"));
+		return (ft_error_msg("Error\nMalloc error"));
 	mlx_destroy_image(img->mlx, img->img);
 	return (0);
 }

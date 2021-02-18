@@ -65,7 +65,7 @@ int		ft_check_color_p2(t_options *qu, int i, char **ans, char c)
 	if (!(ft_check_nubmers(&ans[0][i]) || (!(ft_check_nubmers(ans[1]))
 	|| (!(ft_check_nubmers(ans[2]))))))
 		return (0);
-	if ((ft_strrchr(ans[0], c) != NULL) &&
+	if (c == 'F' && (ft_strrchr(ans[0], c) != NULL) &&
 	(qu->fr == -1 && qu->fg == -1 && qu->fb == -1))
 	{
 		qu->fr = ft_atoi(&ans[0][i]);
@@ -73,7 +73,7 @@ int		ft_check_color_p2(t_options *qu, int i, char **ans, char c)
 		qu->fb = ft_atoi(ans[2]);
 		return (100100);
 	}
-	if (ft_strrchr(ans[0], c) != NULL &&
+	if (c == 'C' && ft_strrchr(ans[0], c) != NULL &&
 	(qu->cr == -1 && qu->cg == -1 && qu->cb == -1))
 	{
 		qu->cr = ft_atoi(&ans[0][i]);

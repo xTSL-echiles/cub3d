@@ -27,7 +27,7 @@ LIB_MLX = libmlx.dylib
 
 MLX = ./minilibx_mms_20200219
 
-FLAGS = -Wall -Wextra -Werror -O2
+FLAGS = -Wall -Wextra -Werror -O3
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
