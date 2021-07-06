@@ -1,2 +1,2 @@
 3D C project.
-[alt text](file.png "Описание будет тут")
+[alt text](Screenshot_1.png "Скрин из программы")
