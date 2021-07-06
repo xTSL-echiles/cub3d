@@ -1,2 +1,2 @@
 3D C project.
-[alt text](Screenshot_1.png "Скрин из программы")
+![Иллюстрация к проекту](https://github.com/jon/coolproject/raw/master/image/image.png)
