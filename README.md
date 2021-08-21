@@ -3,4 +3,4 @@
 
 WASD to move, QE or Left/Right directional keys to rotate camera. ESC to quit.
 
-Use flag --save for BMP scrennshot.
+Use flag --save for BMP screenshot.
