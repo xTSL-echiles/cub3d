@@ -1,0 +1,55 @@
+NAME = cub3D
+
+HEADER = ./includes/libcub.h
+
+
+SRC	= 		./src/map_parser/ft_acces.c\
+			./src/map_parser/ft_atoi.c\
+			./src/map_parser/ft_check_zero_line_in_map.c\
+			./src/map_parser/ft_parser_map.c\
+			./src/map_parser/ft_split.c\
+			./src/map_parser/get_next_line.c\
+			./src/map_parser/get_next_line_utils.c\
+			./src/map_parser/parser_start.c\
+			./src/map_parser/utils_2.c\
+			./src/map_parser/utils.c\
+			./src/map_parser/utils_3.c\
+			./src/graphic/ray_cast.c\
+			./src/graphic/key_press.c\
+			./src/graphic/texture.c\
+			./src/graphic/dda_setup.c\
+			./src/graphic/sprites.c\
+			./src/graphic/utils_graphic.c\
+			./src/map_parser/ft_map_parser_p2.c\
+
+LIB_MLX = ./minilibx-linux/libmlx.a
+
+MLX = ./minilibx-linux
+
+FLAGS = -O2 
+
+MLX_FLAGS = -Iminilibx-linux -Lminilibx-linux -lmlx -lXext -lm -lz -lX11
+
+SRC_O = $(patsubst %.c,%.o,$(SRC))
+
+all: $(NAME)
+
+$(NAME): $(SRC_O)
+		make -C $(MLX)
+		gcc  $(SRC_O) $(MLX_FLAGS)  $(LIB_MLX) -o $(NAME)
+		export DISPLAY=localhost:0.0
+
+%.o: %.c $(HEADER)
+	gcc $(FLAGS) -c $< -o $@
+
+clean:	
+	rm -rf $(SRC_O)
+	make clean -C $(MLX)
+
+fclean: clean
+		rm -rf $(NAME)
+		rm -rf $(LIB_MLX)
+
+re: fclean all
+
+.PHONY: all clean fclean re
